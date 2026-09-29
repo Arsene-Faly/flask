@@ -1,0 +1,37 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}
+À propos
+{% endblock %}
+
+{% block content %}
+
+<h1>À propos de nous</h1>
+
+<p>
+    Bienvenue sur notre projet Flask.
+    Cette application a été développée avec Python et Flask
+    pour créer une application web simple et dynamique.
+</p>
+
+<section>
+    <h2>Notre projet</h2>
+    <p>
+        Notre objectif est de mettre en pratique les concepts
+        du développement web avec Flask, HTML et CSS.
+    </p>
+</section>
+
+<section>
+    <h2>Technologies utilisées</h2>
+    <ul>
+        {% for item in technologies %}
+            <li>{{item}}</li>
+        {% else %}
+            <p>Pas de services</p>
+        {% endfor %}
+        
+    </ul>
+</section>
+
+{% endblock %}

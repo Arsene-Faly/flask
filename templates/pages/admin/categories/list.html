@@ -1,0 +1,88 @@
+{% extends "layouts/base_admin.html" %} {% block title %} Categories {% endblock
+%} {% block content %}
+
+<div class="page-header">
+  <h2>Listes des categories | nb = {{ nombre_categories }}</h2>
+
+  <a
+    href="{{ url_for('admin_category.category_create') }}"
+    class="btn btn-primary"
+  >
+    <i class="fa-solid fa-plus"></i>
+
+    Ajouter
+  </a>
+</div>
+
+<div class="card">
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+
+          <th>Nom</th>
+
+          <th>Description</th>
+
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for item in categories %}
+        <tr>
+          <td>{{ loop.index }}</td>
+
+          <td>{{ item.name }}</td>
+
+          <td>{{ item.description }}</td>
+
+          <td>
+            <div class="actions">
+              <a
+                href="{{ url_for('admin_category.category_detail', id=item.id ) }}"
+                class="btn btn-view"
+              >
+                <i class="fa-solid fa-eye"></i>
+
+                Voir
+              </a>
+
+              <a
+                href="{{ url_for('admin_category.category_edit', id=item.id ) }}"
+                class="btn btn-edit"
+              >
+                <i class="fa-solid fa-pen"></i>
+
+                Modifier
+              </a>
+
+              <form
+                method="POST"
+                action="{{ url_for('admin_category.category_delete', id=item.id) }}"
+                style="display: inline"
+              >
+                <button
+                  type="submit"
+                  class="btn btn-delete"
+                  onclick="
+                    return confirm(
+                      'Voulez-vous vraiment supprimer cette catégorie ?',
+                    );
+                  "
+                >
+                  <i class="fa-solid fa-trash"></i>
+                  Supprimer
+                </button>
+              </form>
+            </div>
+          </td>
+        </tr>
+        {% else %} Aucun categorie {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}

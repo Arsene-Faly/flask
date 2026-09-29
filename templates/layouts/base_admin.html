@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+    {% block title %}
+        Dashboard
+    {% endblock %}
+</title>
+
+
+<!-- CSS -->
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/admin.css') }}"
+>
+
+
+<!-- Font Awesome -->
+
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+>
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+
+    <!-- ================================
+         HEADER
+    ================================= -->
+
+    <header class="dashboard-header">
+
+        <img
+            src="{{ url_for('static', filename='images/logo.png') }}"
+            alt="Logo"
+        >
+
+        <h1>
+            Mon Dashboard
+        </h1>
+
+    </header>
+
+
+    <!-- ================================
+         LAYOUT
+    ================================= -->
+
+    <div class="dashboard-layout">
+
+
+        <!-- ================================
+             SIDEBAR
+        ================================= -->
+
+        <aside class="sidebar">
+
+            <ul>
+
+                <!-- Dashboard -->
+
+                <li>
+
+                    <a
+                        href="{{ url_for('admin.dashboard_view') }}"
+                    >
+
+                        <i class="fa-solid fa-house"></i>
+
+                        Tableau de bord
+
+                    </a>
+
+                </li>
+
+
+                <!-- Categories -->
+
+                <li>
+
+                    <a
+                        href="{{ url_for('admin_category.category_list') }}"
+                    >
+
+                        <i class="fa-solid fa-list"></i>
+
+                        Categories
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </aside>
+
+
+        <!-- ================================
+             CONTENT
+        ================================= -->
+
+        <main class="dashboard-content">
+
+            {% block content %}
+
+            {% endblock %}
+
+        </main>
+
+
+    </div>
+
+
+    <!-- ================================
+         FOOTER
+    ================================= -->
+
+    <footer class="dashboard-footer">
+
+        <p>
+            &copy; 2026 Mon Dashboard
+        </p>
+
+    </footer>
+
+
+</div>
+
+</body>
+
+</html>

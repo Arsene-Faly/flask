@@ -1,0 +1,61 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}
+Contact
+{% endblock %}
+
+{% block content %}
+
+<h1>Contactez-nous</h1>
+
+<p>
+    Vous pouvez nous contacter pour toute question ou information.
+</p>
+
+<form method="POST" id="contact-form">
+
+<div>
+    <label for="name">Nom :</label>
+    <input type="text" id="name" name="name" required>
+</div>
+
+<div>
+    <label for="email">Email :</label>
+    <input type="email" id="email" name="email" required>
+</div>
+
+<div>
+    <label for="message">Message :</label>
+    <textarea id="message" name="message" rows="5" required></textarea>
+</div>
+
+<button type="submit" id="submit-button">
+    <span id="button-text">Envoyer</span>
+
+    <span id="loader" style="display: none;">
+        ⏳ Envoi...
+    </span>
+</button>
+
+</form>
+
+<script>
+    const form = document.getElementById("contact-form");
+    const button = document.getElementById("submit-button");
+    const buttonText = document.getElementById("button-text");
+    const loader = document.getElementById("loader");
+
+    form.addEventListener("submit", function () {
+
+        // Désactiver le bouton
+        button.disabled = true;
+
+        // Changer le texte du bouton
+        buttonText.style.display = "none";
+
+        // Afficher le loader
+        loader.style.display = "inline";
+    });
+</script>
+
+{% endblock %}

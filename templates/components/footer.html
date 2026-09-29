@@ -1,0 +1,15 @@
+<footer>
+    <p><em>Projet Flask Footer</em></p>
+
+<nav>
+    <ul>
+        <li><a href="{{ url_for('main.home_view') }}">Accueil</a></li>
+        <li><a href="{{ url_for('main.service_view') }}">Service</a></li>
+        <li><a href="{{ url_for('main.about_view') }}">À propos</a></li>
+        <li><a href="{{ url_for('main.contact_view') }}">Contact</a></li>
+    </ul>
+</nav>
+
+<p>&copy; 2026 - Projet Flask by {{ author }}</p>
+
+</footer>

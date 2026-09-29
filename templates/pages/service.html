@@ -1,0 +1,28 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}
+Services
+{% endblock %}
+
+{% block content %}
+
+{{ page }}
+
+<h1>Nos Services</h1>
+
+<p>Découvrez les services proposés par notre projet Flask. {{ liste_services|length }} </p>
+
+{% for item in liste_services %}
+    <section>
+        <p>{{ loop.index }}</p>
+        <h2>{{ item.name }}</h2>
+        <p>{{ item.description }}</p>
+    </section>
+{% else %}
+    <p>Pas de services</p>
+{% endfor %}
+
+
+
+
+{% endblock %}

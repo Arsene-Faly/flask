@@ -7,7 +7,7 @@ from config import Config, db
 # from routes.auth import auth
 
 # Importation models
-from models import Category
+from models import Category, Product
 
 from routes import main, auth, admin, admin_category
 

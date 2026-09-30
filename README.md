@@ -114,3 +114,5 @@ Tu installes MySQL parce que ton application Flask a besoin d’un serveur de ba
 
 🖥️ phpMyAdmin, c’est quoi ?
 phpMyAdmin est une interface web qui permet de gérer MySQL/MariaDB plus facilement.
+
+https://github.com/Arsene-Faly/flask

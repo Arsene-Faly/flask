@@ -1,0 +1,206 @@
+{% extends "layouts/base_admin.html" %}
+
+{% block title %}
+Détails du produit
+{% endblock %}
+
+{% block content %}
+
+<!-- En-tête -->
+
+<div class="page-header">
+
+
+<div>
+
+    <h2>
+        Détails du produit
+    </h2>
+
+    <p>
+        Consultez les informations du produit.
+    </p>
+
+</div>
+
+
+<a
+    href="{{ url_for('admin_product.product_list') }}"
+    class="btn btn-view"
+>
+
+    <i class="fa-solid fa-arrow-left"></i>
+
+    Retour
+
+</a>
+
+
+</div>
+
+<!-- Informations -->
+
+<div class="card">
+
+
+<div class="page-header">
+
+    <h3>
+        Informations du produit
+    </h3>
+
+</div>
+
+
+<div class="detail-item">
+
+    <strong>
+        ID
+    </strong>
+
+    <p>
+        {{ product.id }}
+    </p>
+
+</div>
+
+
+<div class="detail-item">
+
+    <strong>
+        Nom
+    </strong>
+
+    <p>
+        {{ product.name }}
+    </p>
+
+</div>
+
+
+<div class="detail-item">
+
+    <strong>
+        Description
+    </strong>
+
+    <p>
+
+        {% if product.description %}
+
+            {{ product.description }}
+
+        {% else %}
+
+            Aucune description disponible.
+
+        {% endif %}
+
+    </p>
+
+</div>
+
+
+<div class="detail-item">
+
+    <strong>
+        Prix
+    </strong>
+
+    <p>
+        {{ product.price }} Ar
+    </p>
+
+</div>
+
+
+<div class="detail-item">
+
+    <strong>
+        Catégorie
+    </strong>
+
+    <p>
+        {{ product.category.name }}
+    </p>
+
+</div>
+
+
+<div class="detail-item">
+
+    <strong>
+        Date de création
+    </strong>
+
+    <p>
+        {{ product.created_at }}
+    </p>
+
+</div>
+
+
+<!-- Actions -->
+
+<div class="actions">
+
+    <a
+        href="{{ url_for(
+            'admin_product.product_edit',
+            id=product.id
+        ) }}"
+        class="btn btn-edit"
+    >
+
+        <i class="fa-solid fa-pen"></i>
+
+        Modifier
+
+    </a>
+
+
+    <form
+        method="POST"
+        action="{{ url_for(
+            'admin_product.product_delete',
+            id=product.id
+        ) }}"
+        style="display: inline"
+    >
+
+        <button
+            type="submit"
+            class="btn btn-delete"
+            onclick="
+                return confirm(
+                    'Voulez-vous vraiment supprimer ce produit ?'
+                );
+            "
+        >
+
+            <i class="fa-solid fa-trash"></i>
+
+            Supprimer
+
+        </button>
+
+    </form>
+
+
+    <a
+        href="{{ url_for('admin_product.product_list') }}"
+        class="btn btn-view"
+    >
+
+        <i class="fa-solid fa-arrow-left"></i>
+
+        Retour
+
+    </a>
+
+</div>
+
+
+</div>
+
+{% endblock %}

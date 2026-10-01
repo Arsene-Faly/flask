@@ -1,61 +1,169 @@
 {% extends "layouts/base_admin.html" %}
 
 {% block title %}
-Category details
+Détails de la catégorie
 {% endblock %}
-
 
 {% block content %}
 
-<div class="page-header">
+<!-- En-tête de la page -->
 
-    <h2>Détails de la catégorie</h2>
+<div class="page-header">
+    <div>
+        <h2>Détails de la catégorie</h2>
+        <p>Consultez les informations et les produits associés à cette catégorie.</p>
+    </div>
+
+
+<a href="{{ url_for('admin_category.category_list') }}" class="btn btn-view">
+    <i class="fa-solid fa-arrow-left"></i>
+    Retour
+</a>
+
+
+</div>
+
+<!-- Informations de la catégorie -->
+
+<div class="card">
+
+
+<div class="page-header">
+    <h3>Informations de la catégorie</h3>
+</div>
+
+<div class="detail-item">
+    <strong>Nom</strong>
+    <p>{{ category.name }}</p>
+</div>
+
+<div class="detail-item">
+    <strong>Description</strong>
+    <p>
+        {% if category.description %}
+            {{ category.description }}
+        {% else %}
+            Aucune description disponible.
+        {% endif %}
+    </p>
+</div>
+
+<div class="detail-item">
+    <strong>Nombre de produits</strong>
+    <p>{{ category.products|count }} produit(s)</p>
+</div>
+
+<!-- Actions -->
+<div class="actions">
+
+    <a href="" class="btn btn-edit">
+        <i class="fa-solid fa-pen"></i>
+        Modifier
+    </a>
+
+    <a href="{{ url_for('admin_category.category_list') }}" class="btn btn-view">
+        <i class="fa-solid fa-arrow-left"></i>
+        Retour
+    </a>
 
 </div>
 
 
+</div>
+
+<!-- Liste des produits -->
+
 <div class="card">
 
-    <div class="detail-item">
 
-        <strong>Nom</strong>
+<div class="page-header">
+    <div>
+        <h3>Liste des produits</h3>
+        <p>
+            {{ category.products|count }} produit(s) dans cette catégorie.
+        </p>
+    </div>
+</div>
+
+
+{% if category.products %}
+
+    <div class="table-container">
+        <table class="table">
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Description</th>
+                    <th>Prix</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for item in category.products %}
+
+                <tr>
+
+                    <td>
+                        {{ loop.index }}
+                    </td>
+
+                    <td>
+                        <strong>{{ item.name }}</strong>
+                    </td>
+
+                    <td>
+                        {% if item.description %}
+                            {{ item.description }}
+                        {% else %}
+                            <span>Aucune description</span>
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        <strong>{{ item.price }} Ar</strong>
+                    </td>
+
+                    <td>
+
+                        <a href="" class="btn btn-view">
+                            <i class="fa-solid fa-eye"></i>
+                            Voir
+                        </a>
+
+                        <a href="" class="btn btn-edit">
+                            <i class="fa-solid fa-pen"></i>
+                            Modifier
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+    </div>
+
+{% else %}
+
+    <div class="empty-state">
+        <i class="fa-solid fa-box-open"></i>
+
+        <h4>Aucun produit</h4>
 
         <p>
-            {{ category.name }}
+            Aucun produit n'est associé à cette catégorie pour le moment.
         </p>
-
     </div>
 
+{% endif %}
 
-    <div class="detail-item">
-
-        <strong>Description</strong>
-
-        <p>
-            {{ category.description }}
-        </p>
-
-    </div>
-
-
-    <div class="actions">
-
-        <a
-            href=""
-            class="btn btn-edit"
-        >
-            <i class="fa-solid fa-pen"></i>
-            Modifier
-        </a>
-
-        <a
-            href="{{ url_for('admin_category.category_list')}}"
-            class="btn btn-view"
-        >
-            Retour
-        </a>
-
-    </div>
 
 </div>
 

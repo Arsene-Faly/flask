@@ -9,7 +9,7 @@ from config import Config, db
 # Importation models
 from models import Category, Product
 
-from routes import main, auth, admin, admin_category
+from routes import main, auth, admin, admin_category, admin_product
 
 
 # __name__ → Variable speciale pour indiquer à Flask où se trouve notre application.
@@ -28,6 +28,7 @@ app.register_blueprint(main)
 app.register_blueprint(auth)
 app.register_blueprint(admin)
 app.register_blueprint(admin_category)
+app.register_blueprint(admin_product)
 
 # Variable globale : variable accessible dans l'application
 @app.context_processor
